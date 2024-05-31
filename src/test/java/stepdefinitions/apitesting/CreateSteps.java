@@ -18,13 +18,13 @@ public class CreateSteps {
     private Response response;
     private Map<String, String> userData;
 
-    @Given("I have user data")
+    @Given("Saya memiliki data user")
     public void createUser(DataTable dataTable) {
         userData = new HashMap<>();
         userData.putAll(dataTable.asMaps().get(0));
     }
 
-    @When("I send a POST request to create the user")
+    @When("Saya mengirim permintaan POST untuk create user")
     public void sendPostRequest() {
         RestAssured.baseURI = "https://dummyapi.io/data/v1";
         RequestSpecification request = RestAssured.given();
@@ -33,21 +33,21 @@ public class CreateSteps {
         response = request.body(userData).post("/user/create");
     }
 
-    @Then("the response status code should be {int}")
+    @Then("Kode respons adalah {int}")
     public void matchStatusCode(int expectedStatusCode) {
         int actualStatusCode = response.getStatusCode();
         System.out.println("Status Code : " + actualStatusCode);
         Assert.assertEquals(expectedStatusCode, actualStatusCode);
     }
 
-    @Then("the response should match with JSONSchema {string}")
+    @Then("Responnya harus sesuai dengan JSONSchema {string}")
     public void matchJsonSchema(String schemaPath) {
         String responseBody = response.getBody().asString();
         System.out.println("Response Body : " + responseBody);
         response.then().assertThat().body(matchesJsonSchemaInClasspath("JSONSchemaData/" + schemaPath));
     }
 
-    @Then("the response body should be {string}")
+    @Then("Isi respons body adalah {string}")
     public void matchResponseBody(String expectedResponseBody) {
         String actualResponseBody = response.getBody().asString();
         System.out.println("Expected Response Body : " + expectedResponseBody);

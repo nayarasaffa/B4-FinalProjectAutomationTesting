@@ -23,10 +23,17 @@ public class PageObject {
     private By loginButton = By.id("login-button");
     private By menuButton = By.id("react-burger-menu-btn");
     private By logoutLink = By.id("logout_sidebar_link");
+    private By detailProduct = By.id("item_4_title_link");
+    private By backToProduct = By.id("back-to-products");
+    private By addToCart = By.id("add-to-cart");
+    private By remove = By.id("remove");
+    private By cartBadge = By.cssSelector(".shopping_cart_badge[data-test='shopping-cart-badge']");
     private By errorMessageLogin = By.cssSelector(".error-message-container h3[data-test='error']");
 
     // Methods to interact with the elements
     // New method using wait
+
+    // ############## CLICK OBJECT ##############
     public void enterUsername(String username) {
         WebElement usernameElement = wait.until(ExpectedConditions.visibilityOfElementLocated(usernameField));
         usernameElement.sendKeys(username);
@@ -52,6 +59,27 @@ public class PageObject {
         logoutLinkElement.click();
     }
 
+    public void clickDetailProduct(){
+        WebElement detailProdukElement = wait.until(ExpectedConditions.elementToBeClickable(detailProduct));
+        detailProdukElement.click();
+    }
+
+    public void clickBackToProduct(){
+        WebElement detailProdukElement = wait.until(ExpectedConditions.elementToBeClickable(backToProduct));
+        detailProdukElement.click();
+    }
+
+    public void clickAddToCart(){
+        WebElement addToCartElement = wait.until(ExpectedConditions.elementToBeClickable(addToCart));
+        addToCartElement.click();
+    }
+
+    public void clickRemove(){
+        WebElement removeElement = wait.until(ExpectedConditions.elementToBeClickable(remove));
+        removeElement.click();
+    }
+
+    // ############## CHECK PAGE POSITION ##############
     public String isOnDashboardPage() {
         return driver.getCurrentUrl();
     }
@@ -60,6 +88,27 @@ public class PageObject {
         return driver.getCurrentUrl();
     }
 
+    // ############## GET TEXT ##############
+    public String getRemoveButtonText(){
+        WebElement removeElement = wait.until(ExpectedConditions.visibilityOfElementLocated(remove));
+        return removeElement.getText();
+    }
+
+    public String getAddToCartButtonText(){
+        WebElement addToCartElement = wait.until(ExpectedConditions.visibilityOfElementLocated(addToCart));
+        return addToCartElement.getText();
+    }
+
+    public int getCartItemCount(){
+        try {
+            WebElement cartBadgeElement = wait.until(ExpectedConditions.visibilityOfElementLocated(cartBadge));
+            return Integer.parseInt(cartBadgeElement.getText());
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    // ############## GET ERROR MESSAGE ##############
     public String errorMessageUsernamePasswordInvalid() {
         WebElement errorMessageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(errorMessageLogin));
         return errorMessageElement.getText();
