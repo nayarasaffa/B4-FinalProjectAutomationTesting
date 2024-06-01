@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.Select;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,6 +41,12 @@ public class PageObject {
     private By cartIcon = By.id("shopping_cart_container");
     private By continueShoppingButton = By.id("continue-shopping");
     private By checkoutErrorMessage = By.cssSelector(".error-message-container h3[data-test='error']");
+    private By allItemsLink = By.id("inventory_sidebar_link");
+    private By aboutLink = By.id("about_sidebar_link");
+    private By resetAppStateLink = By.id("reset_sidebar_link");
+    private By xButton = By.id("react-burger-cross-btn");
+
+
 
 
     // Methods to interact with the elements
@@ -111,6 +118,18 @@ public class PageObject {
         continueButtonElement.click();
     }
 
+    public void clickXButton(){
+        WebElement closeMenu = wait.until(ExpectedConditions.elementToBeClickable(xButton));
+        closeMenu.click();
+    }
+
+    public void clickResetStateApp(){
+        WebElement resetStateApp = wait.until(ExpectedConditions.elementToBeClickable(resetAppStateLink));
+        resetStateApp.click();
+    }
+
+
+
     // ############## CHECK PAGE POSITION ##############
     public String isOnDashboardPage() {
         return driver.getCurrentUrl();
@@ -145,6 +164,15 @@ public class PageObject {
         } catch (Exception e) {
             return 0;
         }
+    }
+
+    public List<String> getMenuOptions() {
+        List<String> options = new ArrayList<>();
+        options.add(wait.until(ExpectedConditions.visibilityOfElementLocated(allItemsLink)).getText());
+        options.add(wait.until(ExpectedConditions.visibilityOfElementLocated(aboutLink)).getText());
+        options.add(wait.until(ExpectedConditions.visibilityOfElementLocated(logoutLink)).getText());
+        options.add(wait.until(ExpectedConditions.visibilityOfElementLocated(resetAppStateLink)).getText());
+        return options;
     }
 
     // ############## GET ERROR MESSAGE ##############
