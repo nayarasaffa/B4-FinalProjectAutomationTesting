@@ -45,16 +45,7 @@ Proses konfigurasi project menggunakan build automation pada file pom.xml. Semua
          <scope>test</scope>
    </dependency>
    ```
-2. Dependency untuk menggunakan TestNG sebagai framework pengujian
-    ```
-   <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.10.2</version>
-            <scope>test</scope>
-    </dependency>
-   ```
-3. Dependency untuk melakukan validasi skema JSON
+2. Dependency untuk melakukan validasi skema JSON
    ```
    <dependency>
          <groupId>io.rest-assured</groupId>
@@ -62,7 +53,7 @@ Proses konfigurasi project menggunakan build automation pada file pom.xml. Semua
          <version>5.3.0</version>
    </dependency>
    ```
-4. Dependency untuk menulis step definitions dalam bahasa Java 
+3. Dependency untuk menulis step definitions dalam bahasa Java 
     ```
       <dependency>
           <groupId>io.cucumber</groupId>
@@ -72,7 +63,7 @@ Proses konfigurasi project menggunakan build automation pada file pom.xml. Semua
       </dependency>
     ```
     
-5. Dependency untuk menjalankan skenario Cucumber dengan JUnit
+4. Dependency untuk menjalankan skenario Cucumber dengan JUnit
     ```
     <dependency>
           <groupId>io.cucumber</groupId>
@@ -82,7 +73,7 @@ Proses konfigurasi project menggunakan build automation pada file pom.xml. Semua
     </dependency>
     ```
 
-6. Dependency untuk mengotomatisasi dalam berinteraksi dengan browser
+5. Dependency untuk mengotomatisasi dalam berinteraksi dengan browser
     ```
     <dependency>
           <groupId>org.seleniumhq.selenium</groupId>
@@ -91,7 +82,7 @@ Proses konfigurasi project menggunakan build automation pada file pom.xml. Semua
     </dependency>
     ```
 
-7. Dependency untuk mengotomatisasi pengujian di browser Microsoft Edge
+6. Dependency untuk mengotomatisasi pengujian di browser Microsoft Edge
     ```
      <dependency>
           <groupId>org.seleniumhq.selenium</groupId>
