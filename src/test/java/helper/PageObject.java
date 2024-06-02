@@ -24,6 +24,9 @@ public class PageObject {
     // Web elements locators
     private By usernameField = By.id("user-name");
     private By passwordField = By.id("password");
+    private By firstNameField = By.id("first-name");
+    private By lastNameField = By.id("last-name");
+    private By postalCodeField = By.id("postal-code");
     private By loginButton = By.id("login-button");
     private By menuButton = By.id("react-burger-menu-btn");
     private By logoutLink = By.id("logout_sidebar_link");
@@ -38,6 +41,9 @@ public class PageObject {
     private By productNames = By.cssSelector(".inventory_item_name");
     private By productPrices = By.cssSelector(".inventory_item_price");
     private By checkoutButton = By.id("checkout");
+    private By continueButton = By.id("continue");
+    private By cancelButton = By.id("cancel");
+    private By finishButton = By.id("finish");
     private By cartIcon = By.id("shopping_cart_container");
     private By continueShoppingButton = By.id("continue-shopping");
     private By checkoutErrorMessage = By.cssSelector(".error-message-container h3[data-test='error']");
@@ -61,6 +67,21 @@ public class PageObject {
     public void enterPassword(String password) {
         WebElement passwordElement = wait.until(ExpectedConditions.visibilityOfElementLocated(passwordField));
         passwordElement.sendKeys(password);
+    }
+
+    public void enterFirstName(String first_name){
+        WebElement firstNameElement = wait.until(ExpectedConditions.visibilityOfElementLocated(firstNameField));
+        firstNameElement.sendKeys(first_name);
+    }
+
+    public void enterLastName(String last_name){
+        WebElement lastNameElement = wait.until(ExpectedConditions.visibilityOfElementLocated(lastNameField));
+        lastNameElement.sendKeys(last_name);
+    }
+
+    public void enterPostalCode(String postal_code){
+        WebElement postalCodeElement = wait.until(ExpectedConditions.visibilityOfElementLocated(postalCodeField));
+        postalCodeElement.sendKeys(postal_code);
     }
 
     public void clickLoginButton() {
@@ -93,6 +114,12 @@ public class PageObject {
         addToCartElement.click();
     }
 
+    public void clickAddToCartProduct(String productId){
+        By addToCartButton = By.id("add-to-cart-" + productId);
+        WebElement addToCartElement = wait.until(ExpectedConditions.elementToBeClickable(addToCartButton));
+        addToCartElement.click();
+    }
+
     public void clickSauceLabBackpackAddToCart() {
         WebElement addToCartElement = wait.until(ExpectedConditions.elementToBeClickable(addToCartSauceLabBackpack));
         addToCartElement.click();
@@ -106,6 +133,21 @@ public class PageObject {
     public void clickCheckout(){
         WebElement checkoutElement = wait.until(ExpectedConditions.elementToBeClickable(checkoutButton));
         checkoutElement.click();
+    }
+
+    public void clickContinueButton(){
+        WebElement continueElement = wait.until(ExpectedConditions.elementToBeClickable(continueButton));
+        continueElement.click();
+    }
+
+    public void clickCancelButton(){
+        WebElement cancelElement = wait.until(ExpectedConditions.elementToBeClickable(cancelButton));
+        cancelElement.click();
+    }
+
+    public void clickFinishButton(){
+        WebElement finishElement = wait.until(ExpectedConditions.elementToBeClickable(finishButton));
+        finishElement.click();
     }
 
     public void clickCartIcon() {
@@ -143,6 +185,10 @@ public class PageObject {
         return driver.getCurrentUrl();
     }
     public String isOnCheckoutPage() {
+        return driver.getCurrentUrl();
+    }
+
+    public String currentPage() {
         return driver.getCurrentUrl();
     }
 
