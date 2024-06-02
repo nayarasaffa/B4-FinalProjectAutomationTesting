@@ -34,6 +34,7 @@ public class PageObject {
     private By backToProduct = By.id("back-to-products");
     private By addToCart = By.id("add-to-cart");
     private By addToCartSauceLabBackpack = By.id("add-to-cart-sauce-labs-backpack");
+    private By addToCartButton = By.xpath("//button[contains(text(), 'Add to cart')]");
     private By remove = By.id("remove");
     private By cartBadge = By.cssSelector(".shopping_cart_badge[data-test='shopping-cart-badge']");
     private By errorMessageLogin = By.cssSelector(".error-message-container h3[data-test='error']");
@@ -51,6 +52,7 @@ public class PageObject {
     private By aboutLink = By.id("about_sidebar_link");
     private By resetAppStateLink = By.id("reset_sidebar_link");
     private By xButton = By.id("react-burger-cross-btn");
+    private By completedCheckoutPage = By.className("complete-header");
 
 
 
@@ -125,6 +127,11 @@ public class PageObject {
         addToCartElement.click();
     }
 
+    public void clickAddToCartButton(String product) {
+        WebElement addToCartButtonElement = wait.until(ExpectedConditions.elementToBeClickable(addToCartButton));
+        addToCartButtonElement.click();
+    }
+
     public void clickRemove(){
         WebElement removeElement = wait.until(ExpectedConditions.elementToBeClickable(remove));
         removeElement.click();
@@ -168,6 +175,10 @@ public class PageObject {
     public void clickResetStateApp(){
         WebElement resetStateApp = wait.until(ExpectedConditions.elementToBeClickable(resetAppStateLink));
         resetStateApp.click();
+    }
+
+    public boolean isOnCompletedCheckoutPage() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(completedCheckoutPage)).isDisplayed();
     }
 
 

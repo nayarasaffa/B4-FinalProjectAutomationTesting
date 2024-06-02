@@ -1,7 +1,7 @@
 Feature: Checkout Feature
 
   Background:
-    Given User telah masuk ke dalam aplikasi
+    Given User melakukan login
     And User memasukkan barang "sauce-labs-backpack" ke dalam Cart
     And User masuk ke halaman Cart
     And User klik tombol "Checkout"
